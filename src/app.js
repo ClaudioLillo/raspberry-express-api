@@ -1,6 +1,7 @@
 import express, {json} from 'express'
 import multer from 'multer'
 import morgan from 'morgan'
+import cors from 'cors'
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -14,6 +15,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 const app = express()
+app.use(cors())
 app.use(json())
 app.use(morgan('combined'))
 
