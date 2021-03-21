@@ -5,19 +5,23 @@ import cors from 'cors'
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/uploads')
+      cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+      cb(null, Date.now() + "-" + file.originalname)
     }
   })
    
-  const upload = multer({ storage: storage })
+const upload = multer({ storage: storage })
+   
+
 
 const app = express()
 app.use(cors())
 app.use(json())
 app.use(morgan('combined'))
+
+app.use('/uploads', express.static('uploads'))
 
 app.get('/', (req, res)=>{
     return res.status(200).json({
@@ -32,7 +36,11 @@ app.post('/upload', upload.array('file',5), (req, res, next)=>{
         error.httpStatusCode = 400
         return next(error)
     }
-    return res.status(200).json({files: files})
+    let paths = []
+    for(let i of files){
+        paths.push(i.path)
+    }
+    return res.status(200).json({paths: paths})
 })
 
 export default app
