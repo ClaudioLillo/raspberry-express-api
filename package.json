@@ -1,0 +1,24 @@
+{
+  "name": "raspberry-express-api",
+  "version": "1.0.0",
+  "description": "API deployed on raspberry to store files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClaudioLillo/raspberry-express-api.git"
+  },
+  "keywords": [
+    "raspberry",
+    "express",
+    "node"
+  ],
+  "author": "Claudio Lillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClaudioLillo/raspberry-express-api/issues"
+  },
+  "homepage": "https://github.com/ClaudioLillo/raspberry-express-api#readme"
+}
