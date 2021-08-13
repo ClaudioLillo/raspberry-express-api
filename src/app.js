@@ -3,6 +3,10 @@ import multer from 'multer'
 import morgan from 'morgan'
 import cors from 'cors'
 
+import {auth} from './middlewares'
+import routes from './routes'
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads')
@@ -23,10 +27,12 @@ app.use(morgan('combined'))
 
 app.use('/uploads', express.static('uploads'))
 
+
+
 app.get('/', (req, res)=>{
     return res.status(200).json({
         author: "Claudio Lillo",
-        version: "1.0"
+        version: "0.9"
     })
 })
 app.post('/upload', upload.array('file',5), (req, res, next)=>{
@@ -42,5 +48,8 @@ app.post('/upload', upload.array('file',5), (req, res, next)=>{
     }
     return res.status(200).json({paths: paths})
 })
+// Aquí debería pasar el middleware, que debería dejar un rastro en el request
+
+app.use(routes)
 
 export default app
