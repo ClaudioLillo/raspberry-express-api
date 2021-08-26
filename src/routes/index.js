@@ -1,14 +1,16 @@
 import express from 'express'
-const router = express()
+const router = express.Router()
+import {getUsers, createUser} from '../controllers/user'
 
 import {auth} from '../middlewares' 
 
-import loginRouter from './login'
+import {loginUser} from '../controllers/login'
 
-router.use("/login", loginRouter)
-
-router.get("/user", auth, (req, res)=>{
-    res.status(200).json({authorized: true})
-})
+router.route("/login")
+.post(loginUser)
+//auth middleware
+router.route("/user")
+.get(getUsers)
+.post(createUser)
 
 export default router

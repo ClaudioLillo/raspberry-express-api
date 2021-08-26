@@ -50,6 +50,6 @@ app.post('/upload', upload.array('file',5), (req, res, next)=>{
 })
 // Aquí debería pasar el middleware, que debería dejar un rastro en el request
 
-app.use(routes)
+app.use("/", routes)
 
 export default app
