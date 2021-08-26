@@ -4,7 +4,7 @@ import mariadb from 'mariadb'
 
 
 const database=process.env.DATABASE || "elm"
-const username=process.env.USER || "root"
+const username=process.env.USERNAME || "root"
 const password=process.env.PASSWORD ||"triptofano"
 const port=process.env.PORT || '3306'
 
