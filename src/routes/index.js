@@ -1,6 +1,7 @@
 import express from 'express'
 const router = express.Router()
 import {getUsers, createUser} from '../controllers/user'
+import { getRoles, createRole } from '../controllers/roles'
 
 import {auth} from '../middlewares' 
 
@@ -10,7 +11,11 @@ router.route("/login")
 .post(loginUser)
 //auth middleware
 router.route("/user")
-.get(getUsers)
+.get(auth, getUsers)
 .post(createUser)
+
+router.route("/role")
+.get(getRoles)
+.post(createRole)
 
 export default router
